@@ -3,7 +3,7 @@ package com.team4.HRIS;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-// Author - Team 4, Cedric Patton, Joseph Huntley, and Paul Chinnam
+// Authors - Cedric Patton, Joseph Huntley, and Paul Chinnam (Team 4)
 @SpringBootApplication
 public class HrisApplication {
 

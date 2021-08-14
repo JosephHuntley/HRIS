@@ -1,5 +1,6 @@
 package com.team4.HRIS.Address;
-
+// Author - Joseph Huntley
+// Team 4
 public class Address {
     private String street, city, state;
     private boolean primaryResidence;

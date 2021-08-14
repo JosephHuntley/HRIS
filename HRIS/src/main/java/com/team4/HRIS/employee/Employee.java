@@ -1,7 +1,8 @@
 package com.team4.HRIS.employee;
 
 import com.team4.HRIS.Address.Address;
-
+// Author - Joseph Huntley
+// Team 4
 public class Employee {
     private int id, management, rating, position_id;
     private String firstName, lastName, email, phone, password;
