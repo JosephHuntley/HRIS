@@ -72,41 +72,23 @@ public class EmployeeService {
     // Inserts a new employee into the database
     public void createEmployee(Employee emp) {
         System.out.println("Test");
-        final String[] sql = {"INSERT INTO Employee (first_name, last_name, email, phone, password, position_id, status) " +
-                "VALUES(?,?,?,?,?,?, 'Active')",
-                "INSERT INTO Address (street, city, state, primary_residence, employee_id) VALUES(?,?,?,?,?)"};
+        final String sql = "INSERT INTO Employee (first_name, last_name, email, phone, password, position_id, status) " +
+                "VALUES(?,?,?,?,?,?, 'Active')";
         final String selectId = "SELECT MAX(employee_id) as employee_id FROM Employee";
         int empId = 0;
 
         try (Connection con = ds.getConnection();
-             PreparedStatement stmt = con.prepareStatement(sql[0]);
-             PreparedStatement stmt1 = con.prepareStatement(sql[1]);) {
+             PreparedStatement stmt = con.prepareStatement(sql);) {
 
             // Set the variables for the employee table
             stmt.setString(1, emp.getFirstName());
             stmt.setString(2, emp.getLastName());
             stmt.setString(3, emp.getEmail());
             stmt.setString(4, emp.getPhone());
-            stmt.setString(5, sha1Hash(emp.getPassword()));
+            stmt.setString(5, emp.getPassword());
             stmt.setInt(6, emp.getPosition_id());
             //Execute the employee update
             stmt.executeUpdate();
-
-            // Gather the newly created employee's id
-            PreparedStatement selectIdStmt = con.prepareStatement(selectId);
-            ResultSet rs = selectIdStmt.executeQuery();
-            while (rs.next()) {
-                empId = rs.getInt("employee_id");
-            }
-
-            // Set the variables for the Address table
-            stmt1.setString(1, emp.getAddress().getStreet());
-            stmt1.setString(2, emp.getAddress().getCity());
-            stmt1.setString(3, emp.getAddress().getState());
-            stmt1.setBoolean(4, emp.getAddress().isPrimaryResidence());
-            stmt1.setInt(5, empId);
-            // Execute the address update
-            stmt1.executeUpdate();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -167,11 +149,10 @@ public class EmployeeService {
         String email = null;
         String phone = null;
         String password = null;
-        final String sql = "UPDATE Employee SET ? = ? WHERE employee_id = ?";
+        String sql;
         final String selectId = "SELECT * FROM Employee WHERE employee_id = ?";
 
         try(Connection con = ds.getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql);
             PreparedStatement select = con.prepareStatement(selectId);){
             select.setInt(1, employee.getId());
             ResultSet rs = select.executeQuery();
@@ -184,12 +165,43 @@ public class EmployeeService {
                 password = rs.getString("password");
             }
 
+
+
+            // A set of if statements to detirmine what needs to be updated in the database
             if(employee.getFirstName() != firstName && employee.getFirstName() != null){
+                sql = "UPDATE Employee SET first_name = ? WHERE employee_id = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(2, employee.getId());
                 stmt.setString(1, employee.getFirstName());
+
                 stmt.executeUpdate();
             }
             if(employee.getLastName() != lastName && employee.getLastName() != null){
-                stmt.setString(1, lastName);
+                sql = "UPDATE Employee SET last_name = ? WHERE employee_id = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(2, employee.getId());
+                stmt.setString(1, employee.getLastName());
+                stmt.executeUpdate();
+            }
+            if(employee.getEmail() != email && employee.getEmail() != null){
+                sql = "UPDATE Employee SET email = ? WHERE employee_id = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(2, employee.getId());
+                stmt.setString(1, employee.getEmail());
+                stmt.executeUpdate();
+            }
+            if(employee.getPhone() != phone && employee.getPhone() != null){
+                sql = "UPDATE Employee SET phone = ? WHERE employee_id = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(2, employee.getId());
+                stmt.setString(1,employee.getPhone());
+                stmt.executeUpdate();
+            }
+            if(employee.getPassword() != password && employee.getPassword() != null){
+                sql = "UPDATE Employee SET password = ? WHERE employee_id = ?";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setInt(2, employee.getId());
+                stmt.setString(1, employee.getPhone());
                 stmt.executeUpdate();
             }
         }catch (SQLException e){

@@ -45,8 +45,8 @@ public class EmployeeController {
 	    employeeService.deleteEmployee(empId);
     }
     // Updates an employee in the database
-    @PutMapping
-    public void updateEmployee(Employee employee){
+    @PutMapping(path = "/update")
+    public void updateEmployee(@RequestBody Employee employee){
         employeeService.updateEmployee(employee);
     }
     //TODO: Update address

@@ -1,9 +1,10 @@
 package com.team4.HRIS.employee;
 
+import com.team4.HRIS.Address.Address;
+
 public class Employee {
     private int id, management, rating, position_id;
     private String firstName, lastName, email, phone, password;
-    private Address address;
 
 
     public Employee() {
@@ -19,7 +20,6 @@ public class Employee {
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.address = address;
     }
 
     public Employee(int management, int rating, String firstName, String lastName, String email,
@@ -31,8 +31,6 @@ public class Employee {
         this.email = email;
         this.phone = phone;
         this.password = password;
-        this.address = address;
-
     }
 
     public int getId() {
@@ -100,20 +98,13 @@ public class Employee {
     }
 
     public String getPassword() {
-        return password;
+        return EmployeeService.sha1Hash(password);
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
 
 
@@ -128,7 +119,6 @@ public class Employee {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
-                ", address=" + address +
                 '}';
     }
 }
