@@ -1,6 +1,6 @@
 package com.team4.HRIS.employee;
 
-import com.team4.HRIS.Address.Address;
+import com.team4.HRIS.address.Address;
 // Author - Joseph Huntley
 // Team 4
 public class Employee {
