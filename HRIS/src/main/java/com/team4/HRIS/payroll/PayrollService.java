@@ -1,18 +1,19 @@
 package com.team4.HRIS.payroll;
 
 import com.team4.HRIS.employee.EmployeeConfiguration;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+@Service
 public class PayrollService {
 
     static DataSource ds = EmployeeConfiguration.getDataSource();
 
-    public static void createPay(Payroll payroll){
+    public void createPay(Payroll payroll){
         final String sql = "INSERT INTO Payroll (ishourly, isfulltime, pay_rate, employee_id) VALUES(?, ?, ?, ?)";
         final String selectId = "SELECT MAX(employee_id) as employee_id FROM Employee";
         int empId = 0;

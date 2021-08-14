@@ -1,14 +1,21 @@
 package com.team4.HRIS.payroll;
 
 public class Payroll {
-    private int id, payrate, netpay, hours, hPlan, vPlan, dPlan;
+    private int id;
     private String name;
     private boolean fullTime, hourly;
+    private double payrate, netpay, hours, hPlan, vPlan, dPlan;
 
     public Payroll() {
     }
 
-    public Payroll(int payrate, int netpay, int hPlan, int vPlan, int dPlan, String name, boolean fullTime, boolean hourly) {
+    public Payroll(boolean fullTime, boolean hourly, double payrate) {
+        this.fullTime = fullTime;
+        this.hourly = hourly;
+        this.payrate = payrate;
+    }
+
+    public Payroll(double payrate, double netpay, double hPlan, double vPlan, double dPlan, String name, boolean fullTime, boolean hourly) {
         this.payrate = payrate;
         this.netpay = netpay;
         this.hPlan = hPlan;
@@ -19,7 +26,7 @@ public class Payroll {
         this.hourly = hourly;
     }
 
-    public Payroll(int id, int payrate, int netpay, int hPlan, int vPlan, int dPlan, String name, boolean fullTime, boolean hourly) {
+    public Payroll(int id, double payrate, double netpay, double hPlan, double vPlan, double dPlan, String name, boolean fullTime, boolean hourly) {
         this.id = id;
         this.payrate = payrate;
         this.netpay = netpay;
@@ -39,42 +46,42 @@ public class Payroll {
         this.id = id;
     }
 
-    public int getPayrate() {
+    public double getPayrate() {
         return payrate;
     }
 
-    public void setPayrate(int payrate) {
+    public void setPayrate(double payrate) {
         this.payrate = payrate;
     }
 
-    public int getNetpay() {
+    public double getNetpay() {
         return netpay;
     }
     public void setNetpay(){
         this.netpay = this.payrate * this.hours - this.dPlan - this.vPlan - this.hPlan;
     }
 
-    public int gethPlan() {
+    public double gethPlan() {
         return hPlan;
     }
 
-    public void sethPlan(int hPlan) {
+    public void sethPlan(double hPlan) {
         this.hPlan = hPlan;
     }
 
-    public int getvPlan() {
+    public double getvPlan() {
         return vPlan;
     }
 
-    public void setvPlan(int vPlan) {
+    public void setvPlan(double vPlan) {
         this.vPlan = vPlan;
     }
 
-    public int getdPlan() {
+    public double getdPlan() {
         return dPlan;
     }
 
-    public void setdPlan(int dPlan) {
+    public void setdPlan(double dPlan) {
         this.dPlan = dPlan;
     }
 

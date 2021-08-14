@@ -162,7 +162,39 @@ public class EmployeeService {
     }
     // Updates an employee in the database
     public void updateEmployee(Employee employee) {
+        String firstName = null;
+        String lastName = null;
+        String email = null;
+        String phone = null;
+        String password = null;
         final String sql = "UPDATE Employee SET ? = ? WHERE employee_id = ?";
+        final String selectId = "SELECT * FROM Employee WHERE employee_id = ?";
+
+        try(Connection con = ds.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            PreparedStatement select = con.prepareStatement(selectId);){
+            select.setInt(1, employee.getId());
+            ResultSet rs = select.executeQuery();
+
+            while (rs.next()) {
+                firstName = rs.getString("first_name");
+                lastName = rs.getString("last_name");
+                email = rs.getString("email");
+                phone = rs.getString("phone");
+                password = rs.getString("password");
+            }
+
+            if(employee.getFirstName() != firstName && employee.getFirstName() != null){
+                stmt.setString(1, employee.getFirstName());
+                stmt.executeUpdate();
+            }
+            if(employee.getLastName() != lastName && employee.getLastName() != null){
+                stmt.setString(1, lastName);
+                stmt.executeUpdate();
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }
 

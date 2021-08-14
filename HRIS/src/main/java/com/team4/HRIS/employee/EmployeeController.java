@@ -9,7 +9,7 @@ import java.util.List;
 @RequestMapping( path = "api/v1/employee")
 public class EmployeeController {
 	
-	 private final EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
 	@Autowired
 	public EmployeeController(EmployeeService employeeService) {
@@ -32,7 +32,7 @@ public class EmployeeController {
     //TODO: Read paystub
 
     // Creates a new employee in the database
-    @PostMapping(path = "/new/employee")
+    @PostMapping(path = "/new")
     public void createEmployee(@RequestBody Employee employee){
 	    employeeService.createEmployee(employee);
     }
