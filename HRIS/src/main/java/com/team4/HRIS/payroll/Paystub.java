@@ -1,4 +1,5 @@
 package com.team4.HRIS.payroll;
+
 // Author - Joseph Huntley
 // Team 4
 public class Paystub {
@@ -60,7 +61,8 @@ public class Paystub {
     public double getNetpay() {
         return netpay;
     }
-    public void setNetpay(){
+
+    public void setNetpay() {
         this.netpay = this.payrate * this.hours - this.dPlan - this.vPlan - this.hPlan;
     }
 
