@@ -31,15 +31,13 @@ public class EmployeeController {
         return employeeService.getEmployee(id);
     }
     //TODO: Read request from employee
-    //TODO: Read paystub
 
     // Creates a new employee in the database
     @PostMapping()
     public void createEmployee(@RequestBody Employee employee) {
         employeeService.createEmployee(employee);
     }
-    //TODO: Create a schedule
-    //TODO: Create a request
+
 
     // Deletes an employee from the database
     @DeleteMapping(path = "/{empId}")
@@ -52,11 +50,7 @@ public class EmployeeController {
     public void updateEmployee(@RequestBody Employee employee) {
         employeeService.updateEmployee(employee);
     }
-    //TODO: Update address
-    //TODO: Update payroll
-    //TODO: Update Schedule
-    //TODO: Update employee request
-    //TODO: Update benefits
+
 
 }
 
