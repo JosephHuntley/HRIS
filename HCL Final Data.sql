@@ -2051,7 +2051,7 @@ INSERT INTO Attendance (`absences`, `sick_leaves`, `vacation_days`, `employee_id
 INSERT INTO Attendance (`absences`, `sick_leaves`, `vacation_days`, `employee_id`, `workschedule_id`, `clockinout_id`) VALUES('11', '5', '2', 199, 199, 199);
 
 -- Insert data into the timecard table
-INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(0, 1, 1, 1);
+INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`, `last_clockIn`) VALUES(0, 1, 1, 1, '18:00:30');
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(1, 2, 2, 2);
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(0, 3, 3, 3);
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(1, 4, 4, 4);
@@ -2064,7 +2064,7 @@ INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attend
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(0, 11, 11, 11);
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(0, 12, 12, 12);
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(0, 13, 13, 13);
-INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(0, 14, 14, 14);
+INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`, `last_clockIn`) VALUES(0, 14, 14, 14, '18:00:30');
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(0, 15, 15, 15);
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(1, 16, 16, 16);
 INSERT INTO ClockInOut (`isClockedIn`, `employee_id`, `workSchedule_id`, `attendance_id`) VALUES(1, 17, 17, 17);
@@ -2853,3 +2853,18 @@ INSERT INTO VisionPlan (`family_coverage`, `deductable_cost`, `copayment_cost`, 
 INSERT INTO VisionPlan (`family_coverage`, `deductable_cost`, `copayment_cost`, `coinsurance_cost`, `monthly_cost`, `coverage_provider_name`, `employee_id`) VALUES(1, 2800, 7, 23, 110, 'National Insurance Company', 197);
 INSERT INTO VisionPlan (`family_coverage`, `deductable_cost`, `copayment_cost`, `coinsurance_cost`, `monthly_cost`, `coverage_provider_name`, `employee_id`) VALUES(0, 2800, 38, 19, 164, 'BCBS', 198);
 INSERT INTO VisionPlan (`family_coverage`, `deductable_cost`, `copayment_cost`, `coinsurance_cost`, `monthly_cost`, `coverage_provider_name`, `employee_id`) VALUES(1, 1700, 32, 11, 189, 'National Insurance Company', 199);
+
+-- Insert data into the  Request Type table
+INSERT INTO RequestType (`request_type`) VALUES ("VACATION");
+INSERT INTO RequestType (`request_type`) VALUES ("SICK LEAVE");	
+INSERT INTO RequestType (`request_type`) VALUES ("EMERGENCY");	
+INSERT INTO RequestType (`request_type`) VALUES ("RETIREMENT");	
+INSERT INTO RequestType (`request_type`) VALUES ("BENEFITS");	
+INSERT INTO RequestType (`request_type`) VALUES ("ASSISTANCE");
+INSERT INTO RequestType (`request_type`) VALUES ("SALARY");	
+INSERT INTO RequestType (`request_type`) VALUES ("OTHER");	
+-- Insert data into the Requests table
+INSERT INTO Requests (`request_details`, `date_of_request`, `is_request_open`, `requesting_employee`, `request_type_id`) VALUES ("My dog has been sneezing a lot lately and I need to find out why. I need two days off to take him to the vet.", "2021-08-11", 1, 1,  3);	
+INSERT INTO Requests (`request_details`, `date_of_request`, `is_request_open`, `requesting_employee`, `request_type_id`) VALUES ("Elon musk gave me a few SpaceX tickets so I plan on taking my family to Mars next Summer. I'll probably need that entire year off.", "2021-05-22", 1, 1,  1);	
+INSERT INTO Requests (`request_details`, `date_of_request`, `is_request_open`, `requesting_employee`, `request_type_id`) VALUES ("I know I've only been here a few years, but I think it's about time for me to speak to someone about getting outta here.", "2018-07-06", 1, 1, 4);
+INSERT INTO Requests (`request_details`, `date_of_request`, `is_request_open`, `requesting_employee`, `request_type_id`, `responding_manager`, `date_of_response`, `response_details`) VALUES ("I don't really have any friends... and I think my mom is tired of pretending. If I could just have a talking buddy, I'd appreciate it.", "2018-07-06", 0, 1, 6, 84, "2018-07-07", "That sounds horrible! I'm here to help buddy...call me when you get a chance at 999-999-9999.");

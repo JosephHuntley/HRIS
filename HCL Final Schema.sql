@@ -40,7 +40,7 @@ CREATE TABLE Employee (
   last_name VARCHAR(45) NOT NULL,
   password VARCHAR(45) NOT NULL,
   email VARCHAR(75) NOT NULL,
-  phone VARCHAR(45) NOT NULL,
+  phone VARCHAR(25) NOT NULL,
   position_id INT NOT NULL,
   status VARCHAR(45),
   FOREIGN KEY(position_id) REFERENCES Positions(position_id)
@@ -82,7 +82,7 @@ ON UPDATE CASCADE);
 CREATE TABLE `hris`.`Performance` (
   `performance_id` INT NOT NULL AUTO_INCREMENT,
   `rating` INT NULL,
-  `remarks` VARCHAR(255) DEFAULT ' ',
+  `remarks` VARCHAR(255) DEFAULT "",
   `employee_id` INT NULL,
   PRIMARY KEY (`performance_id`),
   FOREIGN KEY (`employee_id`)
@@ -189,6 +189,7 @@ CREATE TABLE `hris`.`WorkSchedule` (
 CREATE TABLE `hris`.`Attendance` (
   `attendance_id` INT NOT NULL AUTO_INCREMENT,
   `absences` INT NULL,
+  `tardies` INT NULL,
   `sick_leaves` INT NULL,
   `vacation_days` INT NULL,
   `employee_id` INT NULL,
@@ -208,6 +209,7 @@ CREATE TABLE `hris`.`ClockInOut` (
   `employee_id` INT NULL,
   `workSchedule_id` INT NULL,
   `attendance_id` INT NULL,
+  `last_clockIn` TIME NULL,
   PRIMARY KEY (`clockInOut_id`, `isClockedIn`),
   FOREIGN KEY (`employee_id`)
   REFERENCES `hris`.`Employee` (`employee_id`)
@@ -244,7 +246,7 @@ CREATE TABLE `hris`.`RequestType` (
 -- Requests Table
 CREATE TABLE `hris`.`Requests` (
   `requests_id` INT NOT NULL AUTO_INCREMENT,
-  `request_details` VARCHAR(255) NULL,
+  `request_details` VARCHAR(255)NOT NULL,
   `date_of_request` DATETIME NOT NULL,
   `is_request_open` TINYINT NOT NULL,
   `requesting_employee` INT NOT NULL,
