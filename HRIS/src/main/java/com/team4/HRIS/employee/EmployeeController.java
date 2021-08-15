@@ -25,7 +25,7 @@ public class EmployeeController {
 
     // You can recieve multiple values by @RequestMapping(value = /{val1}/{val2}
     // Gets an employee based on their unique employee Id
-    @GetMapping(value = "/id/{id}")
+    @GetMapping(value = "/{id}")
     public Employee getEmployee(@PathVariable int id) {
         return employeeService.getEmployee(id);
 }
@@ -33,7 +33,7 @@ public class EmployeeController {
     //TODO: Read paystub
 
     // Creates a new employee in the database
-    @PostMapping(path = "/new")
+    @PostMapping()
     public void createEmployee(@RequestBody Employee employee){
 	    employeeService.createEmployee(employee);
     }
@@ -41,12 +41,12 @@ public class EmployeeController {
     //TODO: Create a request
 
     // Deletes an employee from the database
-    @DeleteMapping(path = "/delete/{empId}")
+    @DeleteMapping(path = "/{empId}")
     public void deleteEmployee(@PathVariable int empId){
 	    employeeService.deleteEmployee(empId);
     }
     // Updates an employee in the database
-    @PutMapping(path = "/update")
+    @PutMapping()
     public void updateEmployee(@RequestBody Employee employee){
         employeeService.updateEmployee(employee);
     }

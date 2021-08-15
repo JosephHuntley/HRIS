@@ -67,7 +67,7 @@ public class PayrollService {
                 paystub.setHours(rs.getInt("Clocked Hours"));
                 paystub.setHourly(rs.getBoolean("Is Hourly?"));
                 paystub.setPayrate(rs.getInt("Payrate"));
-                // This doesn't require a querry from the db because it is a calculation preformed by Java
+                // This doesn't require a query from the db because it is a calculation preformed by Java
                 paystub.setNetpay();
                 paystub.sethPlan(rs.getInt("Health Plan Deduction"));
                 paystub.setvPlan(rs.getInt("Vision Plan Deduction"));
