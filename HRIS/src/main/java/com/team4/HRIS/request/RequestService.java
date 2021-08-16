@@ -125,4 +125,36 @@ public class RequestService {
         }
         return null;
     }
+    // the manager can update the request
+    public void updateRequest(Request request) {
+        // Declaring variables at the top that will be used later in the method as per Java code convention chapter 6.3
+        // Declare and initialize the sql statement that will be used below
+        final String sql = "UPDATE Requests SET responding_manager = ?, date_of_response = ?, " +
+                "response_details = ? WHERE requests_id = ?";
+
+        try(Connection con = ds.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)){
+            stmt.setInt(1, request.getManId());
+            stmt.setString(2, request.getEndDate());
+            stmt.setString(3, request.getRespDetails());
+            stmt.setInt(4, request.getId());
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteRequest(int id){
+        // Declaring variables at the top that will be used later in the method as per Java code convention chapter 6.3
+        // Declare and initialize the sql statement that will be used below
+        final String sql = "DELETE FROM Requests WHERE requests_id = ?";
+
+        try(Connection con = ds.getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql)){
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

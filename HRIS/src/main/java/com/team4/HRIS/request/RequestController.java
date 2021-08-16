@@ -29,4 +29,14 @@ public class RequestController {
     public ArrayList<Request> viewEmpRequests(@PathVariable int id){
         return requestService.viewEmpRequests(id);
     }
+    // Update a request by a manager
+    @PutMapping
+    public void updateRequest(@RequestBody Request request){
+        requestService.updateRequest(request);
+    }
+    // Delete a request based on a request ID
+    @DeleteMapping(path = "/{id}")
+    public void deleteRequest(@PathVariable int id){
+        requestService.deleteRequest(id);
+    }
 }

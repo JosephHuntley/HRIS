@@ -1,7 +1,7 @@
 package com.team4.HRIS.request;
 
 public class Request {
-	private int empId, manId;
+	private int id, empId, manId;
 	private String reqDetails, respDetails, startDate, endDate, name, type;
 
 	public Request() {
@@ -17,7 +17,7 @@ public class Request {
 	}
 
 	public Request(int empId, int manId, String type, String reqDetails, String respDetails, String startDate,
-				   String endDate, String name) {
+				   String endDate, String name, int id) {
 		this.empId = empId;
 		this.manId = manId;
 		this.type = type;
@@ -26,6 +26,7 @@ public class Request {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.name = name;
+		this.id = id;
 	}
 
 	public int getEmpId() {
@@ -92,6 +93,14 @@ public class Request {
 		this.name = name;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "Request{" +
@@ -103,6 +112,7 @@ public class Request {
 				", startDate='" + startDate + '\'' +
 				", endDate='" + endDate + '\'' +
 				", name='" + name + '\'' +
+				", id='" + id + '\'' +
 				'}';
 	}
 }
